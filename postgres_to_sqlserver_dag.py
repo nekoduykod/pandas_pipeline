@@ -27,7 +27,6 @@ TABLE_NAME2 = 'nba_forecast2'
 default_args = {
     'start_date': datetime(2023, 1, 1),
 } 
-
 with DAG('postgres_to_sqlserver_dag', default_args=default_args, schedule_interval=None) as dag:
     task1 = PostgresOperator(
         task_id='extract_postgres_table',
