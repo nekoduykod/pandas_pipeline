@@ -1,39 +1,56 @@
 from datetime import datetime
 from airflow import DAG
 from airflow.providers.postgres.operators.postgres import PostgresOperator
+from airflow.providers.mssql.operators.mssql import MsSqlOperator 
+#  for some reason MsSqlOperator finally works, so i can remove pyodbc
 from airflow.operators.python_operator import PythonOperator
 import pyodbc
 
+POSTGRES_CONN_ID = 'postgres_default'
+USERNAME1 = 'postgres'
+PASSWORD1 = 123
+HOST1 = 'localhost'
+PORT1 = 5432
+DATABASE1 = "MyDB"
+TABLE_NAME1 = "nba_forecast"
+
+SQLSERVER_CONN_ID = 'COMPUTERVONSASC\Олександр'
+HOST2 = 'Windows 10 Pro'
+USERNAME2 = 'dbo'   # or COMPUTERVONSASC\Олександр
+HOST2 = 'localhost'
+PORT2 = 1433
+SERVER = 'COMPUTERVONSASC\SQLEXPRESS'
+DATABASE2 = 'MySqldatabase'
+TABLE_NAME2 = 'nba_forecast2'
+
+ 
 default_args = {
     'start_date': datetime(2023, 1, 1),
-}
-
-def extract_from_postgres():
-    # Code to extract data from PostgreSQL
-    pass
-
-def load_to_sqlserver():
-    # Code to load data into SQL Server using pyodbc
-    pass
+} 
 
 with DAG('postgres_to_sqlserver_dag', default_args=default_args, schedule_interval=None) as dag:
-    extract_postgres_table = PythonOperator(
+    task1 = PostgresOperator(
         task_id='extract_postgres_table',
-        python_callable=extract_from_postgres
+        postgres_conn_id=POSTGRES_CONN_ID,
+        sql='SELECT * FROM {}.{}'.format(DATABASE1, TABLE_NAME1),
+        dag=dag
     )
 
-    load_sqlserver_table = PythonOperator(
+    task2 = MsSqlOperator(
         task_id='load_sqlserver_table',
-        python_callable=load_to_sqlserver
+        mssql_conn_id=SQLSERVER_CONN_ID,  
+        sql='INSERT INTO {}.{} SELECT * FROM {}'.format(DATABASE2, TABLE_NAME2, TABLE_NAME1),
+        dag=dag
     )
-
-    extract_postgres_table >> load_sqlserver_table
+    
+    task1 >> task2
 
 
 # 1 TODO
     # Make sure to replace my_table, postgres_default,
     # and sqlserver_default with the appropriate table name,
-    # PostgreSQL connection ID, and SQL Server connection ID, respectively.
+# PostgreSQL connection ID - 1076	"postgres"	"::1"	59339	"pgAdmin 4 - DB:MyDB" 
+    # , and SQL Server connection ID, respectively.
 # 2 TODO
 # Install required dependencies: 
 # You'll need to install additional dependencies for PostgreSQL and SQL Server 
