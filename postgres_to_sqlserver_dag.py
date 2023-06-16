@@ -1,10 +1,10 @@
-from datetime import datetime
+import datetime
 from airflow import DAG
 from airflow.providers.postgres.operators.postgres import PostgresOperator
+# from airflow.hooks.postgres_hook import PostgresHook
 from airflow.providers.mssql.operators.mssql import MsSqlOperator 
-#  for some reason MsSqlOperator finally works, so i can remove pyodbc
 from airflow.operators.python_operator import PythonOperator
-import pyodbc
+# import pyodbc
 
 POSTGRES_CONN_ID = 'postgres_default'
 USERNAME1 = 'postgres'
@@ -15,9 +15,8 @@ DATABASE1 = "MyDB"
 TABLE_NAME1 = "nba_forecast"
 
 SQLSERVER_CONN_ID = 'COMPUTERVONSASC\Олександр'
-HOST2 = 'Windows 10 Pro'
 USERNAME2 = 'dbo'   # or COMPUTERVONSASC\Олександр
-HOST2 = 'localhost'
+HOST2 = 'Windows 10 Pro'
 PORT2 = 1433
 SERVER = 'COMPUTERVONSASC\SQLEXPRESS'
 DATABASE2 = 'MySqldatabase'
@@ -45,28 +44,10 @@ with DAG('postgres_to_sqlserver_dag', default_args=default_args, schedule_interv
     task1 >> task2
 
 
-# 1 TODO
-    # Make sure to replace my_table, postgres_default,
-    # and sqlserver_default with the appropriate table name,
-# PostgreSQL connection ID - 1076	"postgres"	"::1"	59339	"pgAdmin 4 - DB:MyDB" 
+    # TODO 
+    # PostgreSQL connection ID - 1076	"postgres"	"::1"	59339	"pgAdmin 4 - DB:MyDB" 
     # , and SQL Server connection ID, respectively.
-# 2 TODO
-# Install required dependencies: 
-# You'll need to install additional dependencies for PostgreSQL and SQL Server 
-# connections. Install the necessary packages using pip:
-# pip install apache-airflow-providers-postgres apache-airflow-providers-mssql
-
-# 3  TODO
-# Start Airflow web server and scheduler: In your terminal, navigate to your 
-# Airflow home directory and run the following command to start the Airflow 
-# web server and scheduler:
-# airflow webserver --port 8080
-# airflow scheduler
-
-# 4  TODO
-# Access Airflow UI: Open your web browser and visit http://localhost:8080 
-# to access the Airflow web UI.
-# 5 TODO
-# Enable and trigger the DAG: In the Airflow web UI, locate your DAG 
-# (download_postgres_to_sqlserver_dag), 
-# enable it, and manually trigger it.
+ 
+    # airflow webserver --port 8080
+    # airflow scheduler
+    # http://localhost:8080   
