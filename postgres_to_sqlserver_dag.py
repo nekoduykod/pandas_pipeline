@@ -1,11 +1,12 @@
 import datetime
+import psycopg2
+import pyodbc
 from airflow import DAG
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 # from airflow.hooks.postgres_hook import PostgresHook
 from airflow.providers.mssql.operators.mssql import MsSqlOperator 
 from airflow.operators.python_operator import PythonOperator
-# import pyodbc
-
+ 
 POSTGRES_CONN_ID = 'postgres_default'
 USERNAME1 = 'postgres'
 PASSWORD1 = 123

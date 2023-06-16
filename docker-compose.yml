@@ -1,0 +1,30 @@
+version: '3'
+services:
+  postgresql:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: MyDB
+
+  sqlserver:
+    image: microsoft/mssql-server-linux
+    restart: always
+    environment:
+      SA_PASSWORD: #TOTO how windows authentication
+      ACCEPT_EULA: Y
+      MSSQL_PID: Express
+    ports:
+      - '1433:1433'
+
+  airflow:
+    image: apache/airflow:2.2.0
+    restart: always
+    depends_on:
+      - postgresql
+      - sqlserver
+    environment:
+      AIRFLOW_DATABASE_BACKEND: postgres   #TODO what airflow database
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:123@postgresql/your_airflow_database
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor

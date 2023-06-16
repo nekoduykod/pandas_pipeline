@@ -34,7 +34,7 @@ def load_into_sql_server(**context):
     mssql_hook = MsSqlHook(mssql_conn_id='mssql_default')
     conn = mssql_hook.get_conn()
     cursor = conn.cursor()
-
+#todo
     # Execute the SQL query to load the data into SQL Server
     query = "INSERT INTO nba_forecast2 VALUES (%s, %s, ...)"  # Adjust the query as per your SQL Server table structure
 
