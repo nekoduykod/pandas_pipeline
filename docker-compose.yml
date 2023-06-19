@@ -12,7 +12,7 @@ services:
     image: microsoft/mssql-server-linux
     restart: always
     environment:
-      SA_PASSWORD: #TOTO how windows authentication
+      SA_PASSWORD: pass123
       ACCEPT_EULA: Y
       MSSQL_PID: Express
     ports:
