@@ -1,12 +1,3 @@
-import datetime
-import psycopg2
-import pyodbc
-from airflow import DAG
-from airflow.providers.postgres.operators.postgres import PostgresOperator
-# from airflow.hooks.postgres_hook import PostgresHook
-from airflow.providers.mssql.operators.mssql import MsSqlOperator 
-from airflow.operators.python_operator import PythonOperator
- 
 POSTGRES_CONN_ID = 'postgres_default'
 USERNAME1 = 'postgres'
 PASSWORD1 = 123
@@ -44,11 +35,4 @@ with DAG('postgres_to_sqlserver_dag', default_args=default_args, schedule_interv
     
     task1 >> task2
 
-
-    # TODO 
-    # PostgreSQL connection ID - 1076	"postgres"	"::1"	59339	"pgAdmin 4 - DB:MyDB" 
-    # , and SQL Server connection ID, respectively.
  
-    # airflow webserver --port 8080
-    # airflow scheduler
-    # http://localhost:8080   
