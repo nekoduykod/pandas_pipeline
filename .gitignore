@@ -1,5 +1,4 @@
 venv/
-.env
 extraction/secrets/
 notes/
 airflow/extraction/*.csv
