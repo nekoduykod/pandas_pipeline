@@ -1,4 +1,5 @@
 venv/
+air-venv/
 extraction/secrets/
 notes/
 airflow/extraction/*.csv
@@ -12,3 +13,4 @@ airflow/extraction/pipeline_secret.conf
 *.conf
 .DS_Store
 __pycache__
+

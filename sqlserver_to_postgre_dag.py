@@ -1,20 +1,14 @@
-POSTGRES_CONN_ID = 'postgres_default'
-USERNAME1 = 'postgres'
-PASSWORD1 = 123
-HOST1 = 'localhost'
-PORT1 = 5432
-DATABASE1 = "MyDB"
-TABLE_NAME1 = "nba_forecast"
+import time
+from datetime import datetime
+import pwd
+from airflow.models.dag import DAG
+from airflow.decorators import task
+from airflow.utils.task_group import TaskGroup
+from airflow.providers.microsoft.mssql.hooks.mssql import MsSqlHook
+from airflow.hooks.base_hook import BaseHook
+import pandas as pd
+from sqlalchemy import create_engine
 
-SQLSERVER_CONN_ID = 'COMPUTERVONSASC\Олександр'
-USERNAME2 = 'dbo'   # or COMPUTERVONSASC\Олександр
-HOST2 = 'Windows 10 Pro'
-PORT2 = 1433
-SERVER = 'COMPUTERVONSASC\SQLEXPRESS'
-DATABASE2 = 'MySqldatabase'
-TABLE_NAME2 = 'nba_forecast2'
-
- 
 default_args = {
     'start_date': datetime(2023, 1, 1),
 } 
@@ -32,7 +26,5 @@ with DAG('postgres_to_sqlserver_dag', default_args=default_args, schedule_interv
         sql='INSERT INTO {}.{} SELECT * FROM {}'.format(DATABASE2, TABLE_NAME2, TABLE_NAME1),
         dag=dag
     )
-    
-    task1 >> task2
 
- 
+     task1 >> task2
