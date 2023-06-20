@@ -1,6 +1,5 @@
 import time
-from datetime import datetime
-import pwd
+from datetime import datetime 
 from airflow.models.dag import DAG
 from airflow.decorators import task
 from airflow.utils.task_group import TaskGroup
@@ -27,4 +26,4 @@ with DAG('postgres_to_sqlserver_dag', default_args=default_args, schedule_interv
         dag=dag
     )
 
-     task1 >> task2
+    task1 >> task2
