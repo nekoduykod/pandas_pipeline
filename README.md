@@ -2,7 +2,7 @@
 
 The project aimed to create a pipeline for transferring data from a SQL Server database to a PostgreSQL database. It provided a good opportunity to have practive with several tools. It required utilising on-premises databases, VS Code, Python and other extensions.
 
-<img src="https://github.com/nekoduykod/ETL_PIPELINE/img/architecture.jpg" width=70% height=70%>
+<img src="https://github.com/nekoduykod/ETL_PIPELINE/img/architecture.png" width=70% height=70%>  
 
 ## SQL Server to PostgreSQL Pipeline
 
@@ -26,6 +26,6 @@ The Python script extracts data from a Microsoft SQL Server database and loads i
 
 ## Result
  
-<img src="https://github.com/nekoduykod/ETL_PIPELINE/img/goal_achieved.jpg" width=70% height=70%>
+<img src="https://github.com/nekoduykod/ETL_PIPELINE/img/goal_achieved.png" width=70% height=70%>
 
-<img src="https://github.com/nekoduykod/ETL_PIPELINE/img/rows_match_after_repl.jpg" width=70% height=70%>
+<img src="https://github.com/nekoduykod/ETL_PIPELINE/img/rows_match_after_repl.png" width=70% height=70%>
