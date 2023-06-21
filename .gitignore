@@ -1,5 +1,5 @@
 venv/
-air-venv/
+.env
 extraction/secrets/
 notes/
 airflow/extraction/*.csv
@@ -13,4 +13,5 @@ airflow/extraction/pipeline_secret.conf
 *.conf
 .DS_Store
 __pycache__
-
+pip-log.txt
+pip-delete-this-directory.txt
