@@ -9,5 +9,3 @@ airflow/.env
 airflow/.DS_Store
 airflow/extraction/pipeline_secret.conf 
 __pycache__
- 
- 
