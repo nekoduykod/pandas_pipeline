@@ -16,7 +16,6 @@ driver = "ODBC Driver 17 for SQL Server"
 server = "COMPUTERVONSASC\SQLEXPRESS"
 database = "MSQL"
 
-#Extract data from Sql server
 def extract():
     try:
         # SQL Server connection string
@@ -34,7 +33,6 @@ def extract():
         # Close the connection
         engine.dispose()
          
-#load data to Postgres
 def load(df, table):
     try:
         #Establish Postgre connection
