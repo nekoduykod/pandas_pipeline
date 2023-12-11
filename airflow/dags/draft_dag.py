@@ -23,7 +23,6 @@ dag = DAG(
     schedule_interval='@daily',
 )
 
-# Extract data from SQL Server
 def extract():
     try:
         # SQL Server connection string
@@ -40,7 +39,6 @@ def extract():
     finally:
         # Close the connection
         engine.dispose()
-
 """ 
 def transform(df):
     Transform the data as needed
@@ -48,7 +46,6 @@ def transform(df):
     return df_cleaned 
 """
 
-# Load data to PostgreSQL
 def load(df, table):
     try:
         # Establish PostgreSQL connection
@@ -62,14 +59,12 @@ def load(df, table):
     except Exception as e:
         print("Data load error: " + str(e))
 
-# Define the DAG tasks
 extract_task = PythonOperator(
     task_id='extract_task',
     python_callable=extract,
     dag=dag,
 )
 
-# Call the extract task
 load_task = PythonOperator(
     task_id='load_task',
     python_callable=load,
@@ -77,7 +72,6 @@ load_task = PythonOperator(
     dag=dag,
 )
 
-# Set task dependencies
 extract_task >> load_task
 
 """ extract_task >> transform >> load_task
