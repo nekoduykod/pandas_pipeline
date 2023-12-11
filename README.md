@@ -2,7 +2,7 @@
 
 The project aimed to create a pipeline for transferring data from a SQL Server database to a PostgreSQL database. It provided a good opportunity to have practive with several tools. It required utilising on-premises databases, VS Code, Python and other extensions.
 
-<img src="img/architecture.png" alt="blueprint" width="83%"/>
+<img src="img/overview.png" alt="blueprint" width="83%"/>
 
 ## SQL Server to PostgreSQL Pipeline
 
