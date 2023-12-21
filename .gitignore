@@ -1,11 +1,3 @@
 venv/
 .env 
-airflow/extraction/*.csv
-airflow/dags/__pycache__
-airflow/plugins/*
-airflow/logs/*
-airflow/extracts/*
-airflow/.env
-airflow/.DS_Store
-airflow/extraction/pipeline_secret.conf 
 __pycache__
